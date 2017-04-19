@@ -1,4 +1,7 @@
 ## DuotoneImageView
+
+[![Build Status](https://travis-ci.org/SangsooNam/duotoneimageview.svg?branch=master)](https://travis-ci.org/SangsooNam/duotoneimageview)
+
 This is a custom imagee view to show a duotone image. Two colors can be defined with `colorWhite`, `colorBlack` and `contrast` attributes in XML.
 
 ![Screenshot](screenshot/image.png)
