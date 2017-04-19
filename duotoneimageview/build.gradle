@@ -1,9 +1,18 @@
+buildscript {
+    dependencies {
+        classpath 'com.dicedmelon.gradle:jacoco-android:0.1.1'
+    }
+}
+
 plugins {
     id "com.jfrog.bintray" version "1.7"
+    id 'com.github.kt3k.coveralls' version '2.8.1'
 }
 
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
+apply plugin: 'jacoco-android'
+
 
 android {
     compileSdkVersion 25
@@ -109,3 +118,10 @@ bintray {
         }
     }
 }
+
+jacocoAndroidUnitTestReport {
+    csv.enabled false
+    html.enabled true
+    xml.enabled true
+}
+

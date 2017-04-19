@@ -18,8 +18,8 @@ android {
 }
 
 dependencies {
-    compile 'io.github.sangsoonam:duotoneimageview:0.1.0'
-//    compile project(':duotoneimageview')
+//    compile 'io.github.sangsoonam:duotoneimageview:0.1.0'
+    compile project(':duotoneimageview')
     compile 'com.android.support:appcompat-v7:25.0.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
     testCompile 'junit:junit:4.12'
