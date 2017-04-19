@@ -1,7 +1,7 @@
 ## DuotoneImageView
 This is a custom imagee view to show a duotone image. Two colors can be defined with `colorWhite`, `colorBlack` and `contrast` attributes in XML.
 
-
+![Screenshot](https://github.com/SangsooNam/duotoneimageview/blob/master/screenshot/image.png =500x)
 
 ```xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
