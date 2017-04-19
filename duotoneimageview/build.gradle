@@ -11,7 +11,7 @@ plugins {
 
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
-
+apply plugin: 'jacoco-android'
 
 android {
     compileSdkVersion 25
@@ -29,9 +29,12 @@ android {
         targetCompatibility JavaVersion.VERSION_1_7
     }
 
-    buildTypes {
-        debug {
-            testCoverageEnabled true
+    testOptions {
+        unitTests.all {
+            jacoco {
+                // To include Robolectric tests
+                includeNoLocationClasses = true
+            }
         }
     }
 }
@@ -107,7 +110,7 @@ publishing {
 }
 
 coveralls {
-    jacocoReportPath = "${buildDir}/reports/coverage/debug/report.xml"
+    jacocoReportPath = "${buildDir}/reports/jacoco/jacocoTestDebugUnitTestReport/jacocoTestDebugUnitTestReport.xml"
 }
 
 bintray {

@@ -13,4 +13,4 @@ android:
     - android-25
     - extra-android-m2repository
 after_success:
-  - ./gradlew test jacocoTestReport coveralls
+  - ./gradlew jacocoTestReport coveralls
