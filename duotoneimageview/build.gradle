@@ -1,0 +1,108 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.1"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+}
+
+dependencies {
+    compile 'com.android.support:appcompat-v7:25.0.1'
+}
+
+
+ext {
+    PUBLISH_GROUP_ID = 'io.github.sangsoonam'
+    PUBLISH_VERSION = '0.1.0'
+    PUBLISH_ARTIFACT_ID = 'duotoneimageview'
+    PUBLISH_DESCRIPTION = 'Custom imageView to show a duotone image'
+    GITHUB_URL = 'https://github.com/SangsooNam/duotoneimageview'
+    DEVELOPER_NAME = 'Sangsoo Nam'
+}
+
+
+task sourceJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+
+def pomConfig = {
+    description(PUBLISH_DESCRIPTION){}
+    name PUBLISH_ARTIFACT_ID
+    url GITHUB_URL
+    licenses {
+        license {
+            name 'MIT License'
+            url 'http://www.opensource.org/licenses/mit-license.php'
+        }
+    }
+    scm {
+        url GITHUB_URL
+    }
+    developers {
+        developer {
+            name DEVELOPER_NAME
+        }
+    }
+}
+
+publishing {
+    publications {
+        MyPublication(MavenPublication) {
+            groupId = PUBLISH_GROUP_ID
+            version = PUBLISH_VERSION
+
+            artifact "${project.buildDir}/outputs/aar/${project.name}-release.aar"
+            artifact sourceJar
+            artifact javadocJar
+
+            pom.withXml {
+                asNode().children().last() + pomConfig
+            }
+        }
+    }
+}
+
+
+bintray {
+    user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
+    key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+    publications = ['MyPublication']
+    publish = true
+    pkg {
+        repo = PUBLISH_ARTIFACT_ID
+        name = PUBLISH_ARTIFACT_ID
+
+        version {
+            name = PUBLISH_VERSION
+            released  = new Date()
+            mavenCentralSync {
+                user = project.hasProperty('ossUser') ? project.property('ossUser') : System.getenv('OSS_USER')
+                password = project.hasProperty('ossPassword') ? project.property('ossPassword') : System.getenv('OSS_PASSWORD')
+            }
+        }
+    }
+}
