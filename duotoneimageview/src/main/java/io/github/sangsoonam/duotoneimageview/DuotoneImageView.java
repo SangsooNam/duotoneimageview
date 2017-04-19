@@ -7,14 +7,14 @@ import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
-import android.widget.ImageView;
 
 /**
  * ImageView for duotone. This class applies a duotone color filter based on
  * {@code colorWhite, colorBlack, contrast} attributes.
  */
-public class DuotoneImageView extends ImageView {
+public class DuotoneImageView extends AppCompatImageView {
 
     public DuotoneImageView(Context context) {
         this(context, null);
@@ -31,6 +31,7 @@ public class DuotoneImageView extends ImageView {
         int colorWhite = attributes.getColor(R.styleable.DuotoneImageView_colorWhite, Color.WHITE);
         int colorBlack = attributes.getColor(R.styleable.DuotoneImageView_colorBlack, Color.BLACK);
         float contrast = attributes.getFloat(R.styleable.DuotoneImageView_contrast, 1);
+        attributes.recycle();
 
         setDuotoneColorFilter(colorWhite, colorBlack, contrast);
     }
