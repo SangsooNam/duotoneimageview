@@ -16,6 +16,10 @@ import android.util.AttributeSet;
  */
 public class DuotoneImageView extends AppCompatImageView {
 
+    private int mColorWhite;
+    private int mColorBlack;
+    private float mContrast;
+
     public DuotoneImageView(Context context) {
         this(context, null);
     }
@@ -28,12 +32,26 @@ public class DuotoneImageView extends AppCompatImageView {
         super(context, attrs, defStyleAttr);
 
         TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.DuotoneImageView);
-        int colorWhite = attributes.getColor(R.styleable.DuotoneImageView_colorWhite, Color.WHITE);
-        int colorBlack = attributes.getColor(R.styleable.DuotoneImageView_colorBlack, Color.BLACK);
-        float contrast = attributes.getFloat(R.styleable.DuotoneImageView_contrast, 1);
+        mColorWhite = attributes.getColor(R.styleable.DuotoneImageView_colorWhite, Color.WHITE);
+        mColorBlack = attributes.getColor(R.styleable.DuotoneImageView_colorBlack, Color.BLACK);
+        mContrast = attributes.getFloat(R.styleable.DuotoneImageView_contrast, 1);
         attributes.recycle();
 
-        setDuotoneColorFilter(colorWhite, colorBlack, contrast);
+        setDuotoneColorFilter(mColorWhite, mColorBlack, mContrast);
+    }
+
+    @ColorInt
+    public int getColorBlack() {
+        return mColorBlack;
+    }
+
+    @ColorInt
+    public int getColorWhite() {
+        return mColorWhite;
+    }
+
+    public float getContrast() {
+        return mContrast;
     }
 
     /**
