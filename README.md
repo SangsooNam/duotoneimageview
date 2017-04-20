@@ -1,6 +1,9 @@
 ## DuotoneImageView
 
 [![Build Status](https://travis-ci.org/SangsooNam/duotoneimageview.svg?branch=master)](https://travis-ci.org/SangsooNam/duotoneimageview)
+[![Coverage Status](https://coveralls.io/repos/github/SangsooNam/duotoneimageview/badge.svg?branch=master)](https://coveralls.io/github/SangsooNam/duotoneimageview?branch=master)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.sangsoonam/duotoneimageview/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.sangsoonam/duotoneimageview)
+[![DUB](https://img.shields.io/dub/l/vibe-d.svg)]()
 
 This is a custom imagee view to show a duotone image. Two colors can be defined with `colorWhite`, `colorBlack` and `contrast` attributes in XML.
 
