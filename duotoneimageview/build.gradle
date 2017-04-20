@@ -48,7 +48,7 @@ dependencies {
 
 ext {
     PUBLISH_GROUP_ID = 'io.github.sangsoonam'
-    PUBLISH_VERSION = '0.1.0'
+    PUBLISH_VERSION = '0.1.1'
     PUBLISH_ARTIFACT_ID = 'duotoneimageview'
     PUBLISH_DESCRIPTION = 'Custom imageView to show a duotone image'
     GITHUB_URL = 'https://github.com/SangsooNam/duotoneimageview'
